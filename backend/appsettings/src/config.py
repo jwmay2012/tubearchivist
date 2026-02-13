@@ -47,6 +47,7 @@ class DownloadsConfigType(TypedDict):
     extractor_lang: str | None
     integrate_ryd: bool
     integrate_sponsorblock: bool
+    stop_on_bot: bool
 
 
 class ApplicationConfigType(TypedDict):
@@ -97,6 +98,7 @@ class AppConfig:
             "extractor_lang": None,
             "integrate_ryd": False,
             "integrate_sponsorblock": False,
+            "stop_on_bot": True,
         },
         "application": {
             "enable_snapshot": True,

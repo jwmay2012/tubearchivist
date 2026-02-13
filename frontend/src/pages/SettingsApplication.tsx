@@ -52,6 +52,7 @@ const SettingsApplication = () => {
   const [currentThrottledRate, setCurrentThrottledRate] = useState<number | null>(null);
   const [currentScrapingSleep, setCurrentScrapingSleep] = useState<number | null>(null);
   const [currentAutodelete, setCurrentAutodelete] = useState<number | null>(null);
+  const [stopOnBot, setStopOnBot] = useState(true);
 
   // Download Format
   const [downloadsFormat, setDownloadsFormat] = useState<string | null>(null);
@@ -110,6 +111,7 @@ const SettingsApplication = () => {
     setCurrentThrottledRate(appSettingsConfigData?.downloads.throttledratelimit || null);
     setCurrentScrapingSleep(appSettingsConfigData?.downloads.sleep_interval || null);
     setCurrentAutodelete(appSettingsConfigData?.downloads.autodelete_days || null);
+    setStopOnBot(appSettingsConfigData?.downloads.stop_on_bot ?? true);
 
     // Download Format
     setDownloadsFormat(appSettingsConfigData?.downloads.format || null);
@@ -385,6 +387,16 @@ const SettingsApplication = () => {
                   value={currentAutodelete}
                   setValue={setCurrentAutodelete}
                   oldValue={appSettingsConfig?.downloads.autodelete_days}
+                  updateCallback={handleUpdateConfig}
+                />
+              </div>
+              <div className="settings-box-wrapper">
+                <div>
+                  <p>Stop queue on bot detection</p>
+                </div>
+                <ToggleConfig
+                  name="downloads.stop_on_bot"
+                  value={stopOnBot}
                   updateCallback={handleUpdateConfig}
                 />
               </div>
